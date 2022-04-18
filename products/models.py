@@ -15,6 +15,7 @@ class Product(models.Model):
     onetime_amount = models.IntegerField(blank=False, null=False)
     now_amount = models.IntegerField(default=0)
     customers = models.ManyToManyField("users.User")
+    created_at = models.DateTimeField(auto_now_add=True, null=False)
 
     # D-day 계산
     def d_day(self):
