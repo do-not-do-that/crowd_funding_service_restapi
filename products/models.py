@@ -9,11 +9,11 @@ from users.models import User
 class Product(models.Model):
     title = models.CharField(max_length=100)
     writer = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE, related_name='products')
-    total_amount = models.IntegerField()
-    end_date = models.DateField()
+    total_amount = models.IntegerField(blank=False, null=False)
+    end_date = models.DateField(blank=False, null=False)
     description = models.TextField()
-    onetime_amount = models.IntegerField()
-    now_amount = models.IntegerField()
+    onetime_amount = models.IntegerField(blank=False, null=False)
+    now_amount = models.IntegerField(default=0)
     customers = models.ManyToManyField("users.User")
 
     # D-day 계산

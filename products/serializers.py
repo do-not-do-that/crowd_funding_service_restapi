@@ -4,7 +4,7 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.nickname')
+    writer = serializers.ReadOnlyField(source='writer.nickname')
     class Meta:
         model = Product
         fields = '__all__'
