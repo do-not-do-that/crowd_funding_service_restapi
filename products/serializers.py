@@ -29,6 +29,10 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+        read_only_fields = ('total_amount',)
+        extra_kwargs = {
+            'writer' : {'write_only': True}
+        }
 
 class FundingSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,3 +51,8 @@ class FundingSerializer(serializers.ModelSerializer):
 
     def customer_check(self, instance):
         return instance.customer_check()
+
+    def update(self, instance, data):
+        instance.now_amount += instance.onetime_amount
+        instance.save()
+        return super().update(instance, data)
