@@ -28,4 +28,4 @@ class Product(models.Model):
         return self.customers.count()
 
     def achievement_rate(self):
-        return self.total_amount / self.now_amount
+        return f'{(self.now_amount / self.total_amount) *100 :.0f}%'

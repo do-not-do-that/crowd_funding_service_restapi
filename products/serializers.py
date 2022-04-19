@@ -4,20 +4,27 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source='writer.nickname')
     class Meta:
         model = Product
         fields = [
-            'pk',
             'title',
-            'writer',
+            'username',
             'description',
             'total_amount',
             'end_date',
             'onetime_amount',
             'now_amount',
+            'achievement_rate',
+            'd_day'
         ]
-
-        read_only_fields = ('customers', 'now_amount')
+        read_only_fields = ('now_amount', )
+        extra_kwargs = {
+            'description': {'write_only': True},
+            'total_amount': {'write_only': True},
+            'end_date': {'write_only': True},
+            'onetime_amount': {'write_only': True}
+        }
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
@@ -47,22 +54,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 
 
 
-    # d_day = serializers.SerializerMethodField(method_name='d_day')
-    # achievement_rate = serializers.SerializerMethodField(method_name='achievement_rate')
-    # customer_check = serializers.SerializerMethodField(method_name='customer_check')
-    #
-    # def d_day(self, instance):
-    #     return instance.d_day()
-    #
-    # def achievement_rate(self, instance):
-    #     return instance.achievement_rate()
-    #
-    # def customer_check(self, instance):
-    #     return instance.customer_check()
-
 class FundingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = [
-
-        ]
+        fields = []

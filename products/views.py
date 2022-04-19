@@ -12,7 +12,7 @@ class ProductListView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-    ordering_fields = ['created_at', 'total_amount']
+    ordering_fields = ['created_at', 'now_amount']
     search_fields = ['title']
     filter_backends = (filters.SearchFilter, filters.OrderingFilter)
 

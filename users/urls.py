@@ -5,5 +5,4 @@ app_name = "users"
 
 urlpatterns = [
     path('signup/', views.UserCreate.as_view()),
-
  ]
