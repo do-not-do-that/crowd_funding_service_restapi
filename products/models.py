@@ -8,7 +8,7 @@ from users.models import User
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    writer = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE, related_name='products')
+    writer = models.ForeignKey(User, blank=False, on_delete=models.CASCADE, related_name='products')
     total_amount = models.IntegerField(blank=False, null=False)
     end_date = models.DateField(blank=False, null=False)
     description = models.TextField()
@@ -29,6 +29,3 @@ class Product(models.Model):
 
     def achievement_rate(self):
         return self.total_amount / self.now_amount
-
-    def writer_name(self):
-        return self.writer.username
